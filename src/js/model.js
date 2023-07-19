@@ -4,16 +4,15 @@ import { getJSON } from './helper';
 
 export const state = {
   recipe: {},
+  search: {
+    query: '',
+    results: [],
+  },
 };
 
 export const loadRecipe = async function (id) {
   try {
     const data = await getJSON(`${API_URL}/${id}`);
-
-    // const res = await fetch(`${API_URL}/${id}`);
-    // const data = await res.json();
-
-    // if (!res.ok) throw new Error(`${data.message} (${res.status})`);
 
     const { recipe } = data.data;
     state.recipe = {
@@ -31,3 +30,28 @@ export const loadRecipe = async function (id) {
     throw error;
   }
 };
+
+export const loadSearchResults = async function (query) {
+  try {
+    state.search.query = query;
+
+    //   const data = await getJSON(`${API_URL}?search=${query}&key=${KEY}`);
+    const data = await getJSON(`${API_URL}?search=${query}}`);
+    
+    state.search.results = data.data.recipes.map(rec => {
+      return {
+        id: rec.id,
+        title: rec.title,
+        publisher: rec.publisher,
+        image: rec.image_url,
+        // ...(rec.key && { key: rec.key }),
+      };
+    });
+console.log(state.search.results)
+    // state.search.page = 1;
+  } catch (err) {
+    console.error(`${err} 💥💥💥💥`);
+    throw err;
+  }
+};
+// loadSearchResults('pizza');
