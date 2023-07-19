@@ -37,7 +37,7 @@ export const loadSearchResults = async function (query) {
 
     //   const data = await getJSON(`${API_URL}?search=${query}&key=${KEY}`);
     const data = await getJSON(`${API_URL}?search=${query}}`);
-    
+
     state.search.results = data.data.recipes.map(rec => {
       return {
         id: rec.id,
@@ -47,7 +47,7 @@ export const loadSearchResults = async function (query) {
         // ...(rec.key && { key: rec.key }),
       };
     });
-console.log(state.search.results)
+    // console.log(state.search.results)
     // state.search.page = 1;
   } catch (err) {
     console.error(`${err} 💥💥💥💥`);
