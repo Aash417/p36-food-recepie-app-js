@@ -10,7 +10,7 @@ export default class View {
 
     // if (!render) return markup;
 
-    this._clear;
+    this._clear();
     this._parentElement.insertAdjacentHTML('afterbegin', markup);
   }
 
