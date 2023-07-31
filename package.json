@@ -14,6 +14,7 @@
     "sass": "^1.26.10"
   },
   "dependencies": {
+    "caniuse-lite": "^1.0.30001561",
     "core-js": "^3.6.5",
     "fractional": "^1.0.0",
     "regenerator-runtime": "^0.13.7"
